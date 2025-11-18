@@ -1,0 +1,24 @@
+name: Deploy Worker
+
+on:
+  push:
+    # Trigger deployment on every push to the main branch
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+
+    steps:
+      # Checks out your repository code
+      - uses: actions/checkout@v4
+
+      # Uses the official Cloudflare Action to deploy the Worker
+      - name: Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          # Uses the secrets you saved in the previous step
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
