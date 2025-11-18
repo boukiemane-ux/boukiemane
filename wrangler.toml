@@ -1,0 +1,7 @@
+name = "boukie-storage"
+main = "src/worker.js"
+compatibility_date = "2024-11-18"
+
+[[r2_buckets]]
+binding = "R2_BUCKET"
+bucket_name = "my-r2-uploads"
